@@ -1,25 +1,41 @@
-print("=== CALCULADORA ===")
+import random
 
-numero1 = float(input("Ingresa el primer número: "))
-operador = input("Ingresa la operación (+, -, *, /): ")
-numero2 = float(input("Ingresa el segundo número: "))
 
-if operador == "+":
-    resultado = numero1 + numero2
+def calcular():
+	print("🦄 ¡La calculadora mágica! 🦄")
+	print("Elige una operación: +, -, *, /")
 
-elif operador == "-":
-    resultado = numero1 - numero2
+	while True:
+		operacion = input("Operación (o escribe 'salir'): ").strip().lower()
+		if operacion == "salir":
+			print("¡Hasta la próxima aventura! 🌈")
+			break
+		if operacion not in ("+", "-", "*", "/"):
+			print("Esa magia no existe. Prueba +, -, * o /.")
+			continue
 
-elif operador == "*":
-    resultado = numero1 * numero2
+		try:
+			a = float(input("Primer número: "))
+			b = float(input("Segundo número: "))
+		except ValueError:
+			print("¡Uy! Escribe números, por favor.")
+			continue
 
-elif operador == "/":
-    if numero2 != 0:
-        resultado = numero1 / numero2
-    else:
-        resultado = "No se puede dividir entre cero"
+		if operacion == "+":
+			resultado = a + b
+		elif operacion == "-":
+			resultado = a - b
+		elif operacion == "*":
+			resultado = a * b
+		else:
+			if b == 0:
+				print("¡No podemos dividir entre cero! Intenta con otro número.")
+				continue
+			resultado = a / b
 
-else:
-    resultado = "Operación no válida"
+		felicitaciones = random.choice(("¡Genial!", "¡Eres un genio!", "¡Estupendo!"))
+		print(f"{felicitaciones} El resultado es {resultado:g} ✨\n")
 
-print("Resultado:", resultado)
+
+if __name__ == "__main__":
+	calcular()
